@@ -1,10 +1,10 @@
-import {Column, Entity} from "typeorm";
+import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
 
 @Entity()
 class SalesEntity {
 
-    @Column()
-    Id: number
+    @PrimaryGeneratedColumn()
+    id: number
 
     @Column()
     userName: string

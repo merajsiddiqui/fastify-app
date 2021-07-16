@@ -10,7 +10,7 @@ node : v14.17.1
 ### Running the application 
 
 ```
-git clone 
+git clone git+https://github.com/merajsiddiqui/fastify-app.git
 cd fastify-app
 npm install
 npm run build

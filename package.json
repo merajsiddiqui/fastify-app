@@ -2,14 +2,12 @@
   "name": "fastify-app",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "clean": "rimraf dist/*",
     "lint": "tslint -c tslint.json -p tsconfig.json --fix",
     "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
-    "build": "npm-run-all clean lint tsc",
-    "prestart": "npm run build",
-    "start": "node .",
+    "build": "npm run clean && npm run lint &&  tsc",
+    "start": "node dist/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
