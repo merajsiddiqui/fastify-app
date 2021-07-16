@@ -4,10 +4,10 @@ import {FastifyError, FastifyReply, FastifyRequest, RouteOptions} from "fastify"
 import * as Fastify from "fastify"
 import * as FastifyTypeORMPlugin from 'fastify-typeorm-plugin';
 import {SalesRoutes} from "./routes";
-import {Connection, createConnection} from "typeorm";
+import {createConnection} from "typeorm";
 
 
-class App {
+export class App {
     /**
      * @public app
      */
@@ -22,7 +22,6 @@ class App {
                 level: process.env.LOG_LEVEL,
             }
         });
-        this.connectSQLDatabase();
         this.enableErrorHandler();
         this.enableRoutes();
     }
@@ -53,10 +52,8 @@ class App {
      * This method is used to connect to postgreSequel
      * @private connectSQLDatabase
      */
-    private async connectSQLDatabase(): Promise<void> {
+    public async connectSQLDatabase(): Promise<void> {
         const connection = await createConnection()
         this.app.register(FastifyTypeORMPlugin, {connection});
     }
 }
-
-export default new App().app;

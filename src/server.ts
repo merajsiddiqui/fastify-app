@@ -1,10 +1,11 @@
-import app from "./app";
 import * as dotenv from "dotenv"
-
 /**
  * Loading configuration form .env
  */
 dotenv.config({path:__dirname+"/../.env" })
+import { App } from "./app";
+const application = new App();
+const app = application.app;
 /**
  * Handling unhandled Rejection or any unhandled error
  */
@@ -12,19 +13,20 @@ process.on('unhandledRejection', (err) => {
     console.error(err);
     process.exit(1);
 });
-
 /**
  * Starting the application to run at the given address
  */
-app.ready();
-app.listen( process.env.APP_PORT || 3000, (err, address) => {
-    if(err){
-        throw new Error(err.message);
-    } else {
-        console.log(`Application has started running at ${address}`);
-    }
-})
-
+const startAppAfterPluginRegistration = async () => {
+    await application.connectSQLDatabase()
+    app.listen( process.env.APP_PORT || 3000, (err, address) => {
+        if(err){
+            throw new Error(err.message);
+        } else {
+            console.log(`Application has started running at ${address}`);
+        }
+    })
+}
+startAppAfterPluginRegistration()
 
 /**
  * Handling Special termination command
