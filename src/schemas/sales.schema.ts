@@ -19,7 +19,18 @@ export const GetSalesReportSchema: FastifySchema = {
         statType: {type: "string", enum: ["daily", "weekly", "monthly"]}
     },
     response: {
-        200: {},
+        200: {
+            type: "array",
+            item: {
+                type: "object",
+                properties: {
+                    hour: {type: "string"},
+                    day: {type: "string"},
+                    date: {type: "string"},
+                    sales: {type: "number"}
+                }
+            }
+        },
         404: ErrorResponseSchema,
         500: ErrorResponseSchema,
     }
