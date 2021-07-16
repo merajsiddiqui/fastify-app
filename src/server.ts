@@ -16,8 +16,8 @@ process.on('unhandledRejection', (err) => {
 /**
  * Starting the application to run at the given address
  */
-const startAppAfterPluginRegistration = async () => {
-    await application.connectSQLDatabase()
+
+application.loadAllPlugins().then(()=>{
     app.listen( process.env.APP_PORT || 3000, (err, address) => {
         if(err){
             throw new Error(err.message);
@@ -25,8 +25,11 @@ const startAppAfterPluginRegistration = async () => {
             console.log(`Application has started running at ${address}`);
         }
     })
-}
-startAppAfterPluginRegistration()
+}).catch(err=>{
+    console.log(` Unable to load few plugins ${err.message} `)
+    app.close()
+    process.exit(1)
+})
 
 /**
  * Handling Special termination command

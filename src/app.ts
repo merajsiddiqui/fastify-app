@@ -52,8 +52,15 @@ export class App {
      * This method is used to connect to postgreSequel
      * @private connectSQLDatabase
      */
-    public async connectSQLDatabase(): Promise<void> {
+    private async connectSQLDatabase(): Promise<void> {
         const connection = await createConnection()
         this.app.register(FastifyTypeORMPlugin, {connection});
+    }
+
+    /**
+     * Load All plugins and register then only app can listen
+     */
+    public async loadAllPlugins(): Promise<void>{
+        await this.connectSQLDatabase()
     }
 }
