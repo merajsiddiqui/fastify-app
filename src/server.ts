@@ -1,5 +1,10 @@
 import app from "./app";
+import * as dotenv from "dotenv"
 
+/**
+ * Loading configuration form .env
+ */
+dotenv.config({path:__dirname+"/../.env" })
 /**
  * Handling unhandled Rejection or any unhandled error
  */
@@ -8,11 +13,11 @@ process.on('unhandledRejection', (err) => {
     process.exit(1);
 });
 
-
 /**
  * Starting the application to run at the given address
  */
-app.listen( 3000, (err, address) => {
+app.ready();
+app.listen( process.env.APP_PORT || 3000, (err, address) => {
     if(err){
         throw new Error(err.message);
     } else {
