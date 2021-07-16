@@ -10,6 +10,18 @@ const ErrorResponseSchema = {
         code: {type: "number"}
     }
 }
+/**
+ * Sales Data Response format
+ */
+const salesDataResponse = {
+    type: "object",
+    properties: {
+        id: {type: "number"},
+        username: {type: "string"},
+        amount: {type: "number"},
+        date: {type: "string"}
+    }
+}
 
 /**
  * GetSalesReportSchema schema for request and response for the stats api endpoint
@@ -21,7 +33,7 @@ export const GetSalesReportSchema: FastifySchema = {
     response: {
         200: {
             type: "array",
-            item: {
+            items: {
                 type: "object",
                 properties: {
                     hour: {type: "string"},
@@ -33,6 +45,17 @@ export const GetSalesReportSchema: FastifySchema = {
         },
         404: ErrorResponseSchema,
         500: ErrorResponseSchema,
+    }
+}
+
+export const SalesListDataSchema: FastifySchema = {
+    response: {
+        200: {
+            type: "array",
+            items: salesDataResponse
+        },
+        404: ErrorResponseSchema,
+        500: ErrorResponseSchema
     }
 }
 
@@ -57,7 +80,7 @@ export const CreateSalesDataSchema: FastifySchema = {
             type: "object",
             properties: {
                 message: {type: "string"},
-                data: {type: "object"}
+                data: salesDataResponse
             }
         },
         404: ErrorResponseSchema,
