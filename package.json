@@ -4,9 +4,9 @@
   "description": "",
   "scripts": {
     "clean": "rimraf dist/*",
-    "lint": "tslint -c tslint.json -p tsconfig.json --fix",
-    "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
-    "build": "npm run clean && npm run lint &&  tsc",
+    "lint": "tslint -e  node_modules/**/*.{ts, js} -c tslint.json -p tsconfig.json --fix",
+    "prebuild": "npm run clean",
+    "build": "tsc",
     "start": "node dist/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
