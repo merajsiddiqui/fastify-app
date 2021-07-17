@@ -26,11 +26,12 @@ export namespace SalesService {
 
     export const createNewSalesData = async (salesData: any): Promise<any> => {
         const salesRepository = getRepository(SalesEntity)
-        return await salesRepository.insert({
+        const sales =  await salesRepository.insert({
             userName: salesData.username,
             amount: salesData.amount,
             date: salesData.date
         })
+       return sales.generatedMaps[0]
 
     }
 

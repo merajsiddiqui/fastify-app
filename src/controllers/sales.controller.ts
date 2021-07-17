@@ -20,8 +20,13 @@ export namespace SalesController {
      * @param reply
      */
     export const createSalesData = async (request: FastifyRequest, reply: FastifyReply) => {
-        await SalesService.createNewSalesData(request.body)
-        reply.status(200).send(request.body)
+        const response = await SalesService.createNewSalesData(request.body)
+        const data: any = request.body
+        data.id = response.id
+        reply.status(200).send({
+            message : "Report successfully added",
+            data: data
+        })
     }
     /**
      * @description This method list all the sales data from the sales table
@@ -30,7 +35,7 @@ export namespace SalesController {
      * @param reply
      */
     export const listAllSalesData = async (request: FastifyRequest, reply: FastifyReply) => {
-        const salesList = SalesService.listSalesReport()
-        reply.send(200).send(salesList)
+        const salesList = await SalesService.listSalesReport()
+        reply.status(200).send(salesList)
     }
 }

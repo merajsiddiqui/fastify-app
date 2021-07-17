@@ -30,15 +30,14 @@ server : http://localhost:3000
 Method: POST
 URL: {server}/sales/create
 ```
-> Request Paayload
+> Request Payload
 ```json
 {
     "username": "meraj",
-    "amount" : 500,
-    "date" : "2021-12-16 17:00:50"
+    "amount" : 500
 }
 ```
-> Note: `date` is supported in 24-hour format
+> Note: `date` is auto populated for the request time
 
 
 > Success Response 

@@ -68,12 +68,8 @@ export const CreateSalesDataSchema: FastifySchema = {
         properties: {
             username: {type: "string", minLength: 5, maxLength: 20},
             amount: {type: "number", min: 1, max: 10000000},
-            date: {
-                type: "string",
-                pattern: "\\d\\d\\d\\d-(0?[1-9]|1[0-2])-(0?[1-9]|[12][0-9]|3[01]) (00|[0-9]|1[0-9]|2[0-3]):([0-9]|[0-5][0-9]):([0-9]|[0-5][0-9])"
-            }
         },
-        required: ["username", "amount", "date"]
+        required: ["username", "amount"]
     },
     response: {
         200: {
