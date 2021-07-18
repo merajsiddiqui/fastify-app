@@ -19,7 +19,7 @@ npm run start
 
 ### API Endpoints 
 
-> This application supports 2 end points one to create and store sales report and nother to calculate stats based on the report saved in postgreSQL
+> This application supports 3 end points one to create and store sales report and another to calculate stats based on the report saved in postgreSQL and the third one to just see the report databse entries
 
 ```
 server : http://localhost:3000
@@ -52,9 +52,29 @@ URL: {server}/sales/create
     }
 }
 ```
+### 2. Getting Sales Analytics
 
+```
+Method: GET
+URL: {server}/sales/list
+```
+> Success Response
+```json
+[
+    {
+        "id": 1,
+        "amount": 500,
+        "date": "2021-07-17T12:28:15.726Z"
+    },
+    {
+        "id": 2,
+        "amount": 500,
+        "date": "2021-07-17T12:28:15.726Z"
+    }
+]
+```
 
-### 2. Getting Sales Analaytics 
+### 3. Getting Sales Analytics
 
 ```
 Method: GET
@@ -67,19 +87,19 @@ URL: {server}/stats/:statType
 [
     {
         "sales" : 100, 
-        "date" : "2021-12-14"
+        "salesdate" : "2021-12-14"
     }, 
     {
         "sales" : 200, 
-        "date" : "2021-12-15"
+        "salesdate" : "2021-12-15"
     },
     {
         "sales" : 300, 
-        "date" : "2021-12-16"
+        "salesdate" : "2021-12-16"
     }
 ]
 ```
-> Note : `date` can change to `day` | `hour` based on what type of stats you are looking
+> Note : `salesdate` can change to `salesday` | `saleshour` based on what type of stats you are looking
 
 
 
