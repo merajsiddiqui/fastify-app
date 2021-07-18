@@ -36,9 +36,9 @@ export const GetSalesReportSchema: FastifySchema = {
             items: {
                 type: "object",
                 properties: {
-                    hour: {type: "string"},
-                    day: {type: "string"},
-                    date: {type: "string"},
+                    saleshour: {type: "string"},
+                    salesday: {type: "string"},
+                    salesdate:  {type: "string"},
                     sales: {type: "number"}
                 }
             }
