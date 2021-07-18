@@ -52,7 +52,7 @@ URL: {server}/sales/create
     }
 }
 ```
-### 2. Getting Sales Analytics
+### 2. Getting SalesEntries List
 
 ```
 Method: GET
